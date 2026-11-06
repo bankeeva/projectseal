@@ -1,0 +1,26 @@
+# Python / dev
+.venv/
+.venv312/
+.pyinstaller/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.log
+
+# build artifacts
+demo/leaky_project/
+build/
+dist/
+release/
+wheels/
+windows-portable/
+
+# OS / tools
+.DS_Store
+.dsh-office.*/
+docs/screenshots/*.tmp
+
+# documents removed by request
+*.docx
+*.pdf
+docs/screenshots/*architecture*

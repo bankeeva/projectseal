@@ -1,0 +1,155 @@
+name: build
+
+on:
+  push:
+    branches: [main, master]
+    tags: ["v*"]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-macos:
+    name: macOS app
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Test
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: python -m pytest -q
+
+      - name: Build .app
+        run: pyinstaller --noconfirm --clean packaging/ProjectSeal.spec
+
+      - name: Self-check bundled app
+        run: |
+          PROJECTSEAL_SELF_CHECK_OUT="$PWD/selfcheck-macos.json" \
+            QT_QPA_PLATFORM=offscreen \
+            dist/ProjectSeal.app/Contents/MacOS/ProjectSeal --self-check
+          python -c "import json,sys; d=json.load(open('selfcheck-macos.json')); print(json.dumps(d, ensure_ascii=False, indent=2)); sys.exit(0 if d.get('ok') else 1)"
+
+      - name: UI smoke test app
+        run: |
+          PROJECTSEAL_UI_SMOKE_OUT="$PWD/ui-smoke-macos.json" \
+            QT_QPA_PLATFORM=offscreen \
+            dist/ProjectSeal.app/Contents/MacOS/ProjectSeal --ui-smoke-test
+          python -c "import json,sys; d=json.load(open('ui-smoke-macos.json')); print(json.dumps(d, ensure_ascii=False, indent=2)); sys.exit(0 if d.get('ok') else 1)"
+
+      - name: Zip .app
+        run: |
+          cd dist
+          zip -qryX ../ProjectSeal-macOS.zip ProjectSeal.app
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ProjectSeal-macOS
+          path: ProjectSeal-macOS.zip
+          if-no-files-found: error
+
+  build-windows:
+    name: Windows exe
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Build .exe
+        run: pyinstaller --noconfirm --clean packaging/ProjectSeal.spec
+
+      - name: Self-check exe
+        shell: pwsh
+        run: |
+          $env:PROJECTSEAL_SELF_CHECK_OUT = Join-Path $PWD "selfcheck-windows.json"
+          $process = Start-Process -FilePath ".\dist\ProjectSeal.exe" -ArgumentList "--self-check" -Wait -PassThru
+          if (-not (Test-Path "selfcheck-windows.json")) {
+            Write-Error "Self-check report was not created"
+            exit 1
+          }
+          $report = Get-Content "selfcheck-windows.json" -Raw | ConvertFrom-Json
+          $report | ConvertTo-Json -Depth 10
+          if ($process.ExitCode -ne 0 -or -not $report.ok) { exit 1 }
+
+      - name: UI smoke test exe
+        shell: pwsh
+        run: |
+          $env:PROJECTSEAL_UI_SMOKE_OUT = Join-Path $PWD "ui-smoke-windows.json"
+          $process = Start-Process -FilePath ".\dist\ProjectSeal.exe" -ArgumentList "--ui-smoke-test" -Wait -PassThru
+          if (-not (Test-Path "ui-smoke-windows.json")) {
+            Write-Error "UI smoke report was not created"
+            exit 1
+          }
+          $report = Get-Content "ui-smoke-windows.json" -Raw | ConvertFrom-Json
+          $report | ConvertTo-Json -Depth 10
+          if ($process.ExitCode -ne 0 -or -not $report.ok) { exit 1 }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ProjectSeal-Windows
+          path: dist/ProjectSeal.exe
+          if-no-files-found: error
+
+  release:
+    name: GitHub Release
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [build-macos, build-windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Prepare release assets
+        run: |
+          mkdir -p release-assets
+          cp artifacts/ProjectSeal-Windows/ProjectSeal.exe release-assets/
+          cp artifacts/ProjectSeal-macOS/ProjectSeal-macOS.zip release-assets/
+          ls -lh release-assets
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          name: ProjectSeal ${{ github.ref_name }}
+          body: |
+            ## ProjectSeal — скачать и запустить
+
+            **Windows 10/11 (x64)**
+            1. Скачайте `ProjectSeal.exe`.
+            2. Запустите двойным кликом.
+            3. Если SmartScreen предупреждает: «Подробнее» → «Выполнить в любом случае».
+
+            **macOS**
+            1. Скачайте `ProjectSeal-macOS.zip`.
+            2. Распакуйте архив.
+            3. Откройте `ProjectSeal.app`. Если Gatekeeper не даёт открыть: правый клик → «Открыть» → «Открыть».
+
+            Python, терминал, регистрация и интернет не нужны. Исходная папка не изменяется.
+            В релизе только готовые приложения; исходный код — в репозитории.
+          files: |
+            release-assets/ProjectSeal.exe
+            release-assets/ProjectSeal-macOS.zip
+          fail_on_unmatched_files: true

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#162944"/>
+      <stop offset="1" stop-color="#091321"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#25C892"/>
+      <stop offset="1" stop-color="#0C9467"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect x="24" y="24" width="976" height="976" rx="224" fill="url(#bg)"/>
+  <rect x="24" y="24" width="976" height="976" rx="224" fill="none" stroke="#2A4160" stroke-width="4"/>
+  <path d="M512 160 L792 270 V492 C792 680 666 812 512 872 C358 812 232 680 232 492 V270 Z" fill="url(#shield)"/>
+  <path d="M512 214 L744 304 V492 C744 644 640 754 512 808 C384 754 280 644 280 492 V304 Z" fill="#0A1828" opacity="0.16"/>
+  <path d="M512 160 L792 270 V350 L512 244 L232 350 V270 Z" fill="url(#shine)"/>
+  <path d="M388 508 L474 594 L648 410" fill="none" stroke="#FFFFFF" stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="772" cy="770" r="92" fill="#0F1B2D"/>
+  <path d="M772 718 L779 750 L812 757 L779 764 L772 797 L765 764 L732 757 L765 750 Z" fill="#25C892"/>
+</svg>
