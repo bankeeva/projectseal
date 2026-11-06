@@ -1,0 +1,413 @@
+{
+  "version": "1.0",
+  "junk": {
+    "directories": {
+      "node_modules": {
+        "reason": "Папка node_modules: сторонние библиотеки не нужны в архиве."
+      },
+      "bower_components": {
+        "reason": "Папка bower_components: сторонние библиотеки не нужны в архиве."
+      },
+      "jspm_packages": {
+        "reason": "Папка jspm_packages: сторонние библиотеки не нужны в архиве."
+      },
+      "venv": {
+        "reason": "Виртуальное окружение Python: зависимости можно установить заново."
+      },
+      ".venv": {
+        "reason": "Виртуальное окружение Python: зависимости можно установить заново."
+      },
+      "virtualenv": {
+        "reason": "Виртуальное окружение Python: зависимости можно установить заново."
+      },
+      ".virtualenv": {
+        "reason": "Виртуальное окружение Python: зависимости можно установить заново."
+      },
+      "__pycache__": {
+        "reason": "Кэш байт-кода Python: пересоздаётся автоматически."
+      },
+      ".mypy_cache": {
+        "reason": "Кэш инструментов разработки: не относится к исходникам."
+      },
+      ".pytest_cache": {
+        "reason": "Кэш инструментов разработки: не относится к исходникам."
+      },
+      ".ruff_cache": {
+        "reason": "Кэш инструментов разработки: не относится к исходникам."
+      },
+      ".hypothesis": {
+        "reason": "Кэш инструментов разработки: не относится к исходникам."
+      },
+      ".tox": {
+        "reason": "Служебное окружение тестов: не относится к исходникам."
+      },
+      ".nox": {
+        "reason": "Служебное окружение тестов: не относится к исходникам."
+      },
+      ".git": {
+        "reason": "История Git: в архив для передачи обычно не включается."
+      },
+      ".svn": {
+        "reason": "Служебная папка системы контроля версий."
+      },
+      ".hg": {
+        "reason": "Служебная папка системы контроля версий."
+      },
+      ".idea": {
+        "reason": "Настройки IDE: не относятся к исходникам."
+      },
+      ".vscode": {
+        "reason": "Настройки редактора: не относятся к исходникам."
+      },
+      ".fleet": {
+        "reason": "Настройки редактора: не относятся к исходникам."
+      },
+      ".next": {
+        "reason": "Кэш и сборка фреймворка: пересоздаются автоматически."
+      },
+      ".nuxt": {
+        "reason": "Кэш и сборка фреймворка: пересоздаются автоматически."
+      },
+      ".svelte-kit": {
+        "reason": "Кэш и сборка фреймворка: пересоздаются автоматически."
+      },
+      ".parcel-cache": {
+        "reason": "Кэш сборщика: не относится к исходникам."
+      },
+      ".turbo": {
+        "reason": "Кэш сборщика: не относится к исходникам."
+      },
+      ".angular": {
+        "reason": "Кэш сборщика: не относится к исходникам."
+      },
+      "coverage": {
+        "reason": "Отчёты покрытия тестами: не относятся к исходникам."
+      },
+      "htmlcov": {
+        "reason": "Отчёты покрытия тестами: не относятся к исходникам."
+      },
+      "dist": {
+        "reason": "Результат сборки: обычно не нужен в архиве исходников."
+      },
+      "build": {
+        "reason": "Результат сборки: обычно не нужен в архиве исходников."
+      },
+      "target": {
+        "reason": "Результат сборки: обычно не нужен в архиве исходников."
+      }
+    },
+    "file_names": {
+      ".DS_Store": "Служебный файл macOS: не относится к проекту.",
+      "Thumbs.db": "Служебный файл Windows: не относится к проекту.",
+      "desktop.ini": "Служебный файл Windows: не относится к проекту.",
+      ".coverage": "Файл покрытия тестами: не относится к исходникам."
+    },
+    "file_globs": {
+      "*.log": "Лог-файл: обычно содержит локальные данные и не нужен в архиве.",
+      "*.pyc": "Скомпилированный байт-код Python: пересоздаётся автоматически.",
+      "*.pyo": "Скомпилированный байт-код Python: пересоздаётся автоматически.",
+      "*.pyd": "Скомпилированный модуль Python: пересоздаётся автоматически.",
+      "*.swp": "Временный файл редактора.",
+      "*.swo": "Временный файл редактора.",
+      "*~": "Резервная копия редактора.",
+      "*.tmp": "Временный файл.",
+      "*.temp": "Временный файл.",
+      "*.bak": "Резервная копия файла.",
+      "*.orig": "Резервная копия при слиянии.",
+      "*.rej": "Отклонённый патч.",
+      "*.stackdump": "Аварийный дамп: не относится к исходникам.",
+      "*.sqlite-journal": "Журнал локальной базы данных."
+    }
+  },
+  "secret": {
+    "ignore_globs": [
+      ".env.example",
+      ".env.sample",
+      ".env.template",
+      ".env.dist",
+      "*.example",
+      "*.sample",
+      "*.template",
+      "*.dist",
+      "*.example.*",
+      "*.sample.*",
+      "*.template.*"
+    ],
+    "file_names": {
+      ".envrc": {
+        "title": "Файл окружения direnv",
+        "reason": "Файл окружения может содержать токены и пароли.",
+        "severity": "high"
+      },
+      ".npmrc": {
+        "title": "Конфигурация npm",
+        "reason": "В .npmrc может храниться токен реестра npm.",
+        "severity": "high"
+      },
+      ".pypirc": {
+        "title": "Конфигурация PyPI",
+        "reason": "В .pypirc может храниться токен публикации пакетов.",
+        "severity": "high"
+      },
+      ".netrc": {
+        "title": "Файл учётных данных",
+        "reason": "В .netrc могут храниться логины и пароли.",
+        "severity": "high"
+      },
+      ".htpasswd": {
+        "title": "Файл паролей",
+        "reason": "Файл содержит хеши паролей.",
+        "severity": "critical"
+      },
+      "id_rsa": {
+        "title": "Приватный SSH-ключ",
+        "reason": "Приватный SSH-ключ нельзя передавать в архиве.",
+        "severity": "critical"
+      },
+      "id_dsa": {
+        "title": "Приватный SSH-ключ",
+        "reason": "Приватный SSH-ключ нельзя передавать в архиве.",
+        "severity": "critical"
+      },
+      "id_ecdsa": {
+        "title": "Приватный SSH-ключ",
+        "reason": "Приватный SSH-ключ нельзя передавать в архиве.",
+        "severity": "critical"
+      },
+      "id_ed25519": {
+        "title": "Приватный SSH-ключ",
+        "reason": "Приватный SSH-ключ нельзя передавать в архиве.",
+        "severity": "critical"
+      },
+      "credentials": {
+        "title": "Файл учётных данных",
+        "reason": "Файл с именем credentials обычно содержит доступы.",
+        "severity": "high"
+      },
+      "credentials.json": {
+        "title": "Файл учётных данных",
+        "reason": "JSON с доступами к сервисам.",
+        "severity": "high"
+      },
+      "credentials.yml": {
+        "title": "Файл учётных данных",
+        "reason": "YAML с доступами к сервисам.",
+        "severity": "high"
+      },
+      "credentials.yaml": {
+        "title": "Файл учётных данных",
+        "reason": "YAML с доступами к сервисам.",
+        "severity": "high"
+      },
+      "secrets.json": {
+        "title": "Файл секретов",
+        "reason": "Файл явно предназначен для хранения секретов.",
+        "severity": "high"
+      },
+      "secrets.yml": {
+        "title": "Файл секретов",
+        "reason": "Файл явно предназначен для хранения секретов.",
+        "severity": "high"
+      },
+      "secrets.yaml": {
+        "title": "Файл секретов",
+        "reason": "Файл явно предназначен для хранения секретов.",
+        "severity": "high"
+      }
+    },
+    "file_globs": {
+      ".env": {
+        "title": "Файл переменных окружения",
+        "reason": "Файл .env обычно содержит пароли и токены.",
+        "severity": "critical"
+      },
+      ".env.*": {
+        "title": "Файл переменных окружения",
+        "reason": "Файл .env обычно содержит пароли и токены.",
+        "severity": "critical"
+      },
+      "*.pem": {
+        "title": "PEM-файл с ключом",
+        "reason": "PEM-файл может содержать приватный ключ.",
+        "severity": "critical"
+      },
+      "*.key": {
+        "title": "Файл ключа",
+        "reason": "Файл ключа может содержать приватный ключ.",
+        "severity": "critical"
+      },
+      "*.p12": {
+        "title": "Хранилище ключей",
+        "reason": "Контейнер PKCS#12 может содержать приватный ключ.",
+        "severity": "critical"
+      },
+      "*.pfx": {
+        "title": "Хранилище ключей",
+        "reason": "Контейнер PFX может содержать приватный ключ.",
+        "severity": "critical"
+      },
+      "*.jks": {
+        "title": "Java-хранилище ключей",
+        "reason": "Хранилище ключей Java может содержать приватные ключи.",
+        "severity": "critical"
+      },
+      "*.keystore": {
+        "title": "Хранилище ключей",
+        "reason": "Хранилище ключей может содержать приватные ключи.",
+        "severity": "critical"
+      },
+      "*.ppk": {
+        "title": "Приватный ключ PuTTY",
+        "reason": "Приватный ключ нельзя передавать в архиве.",
+        "severity": "critical"
+      },
+      "credentials*.json": {
+        "title": "Файл учётных данных",
+        "reason": "JSON с доступами к сервисам.",
+        "severity": "high"
+      },
+      "service-account*.json": {
+        "title": "Ключ сервисной учётной записи",
+        "reason": "Файл сервисной учётной записи содержит приватный ключ.",
+        "severity": "critical"
+      }
+    },
+    "content_patterns": [
+      {
+        "id": "private_key_block",
+        "title": "Блок приватного ключа",
+        "severity": "critical",
+        "pattern": "-----BEGIN (?:RSA |EC |OPENSSH |DSA |PGP )?PRIVATE KEY-----",
+        "value_group": 0,
+        "kind": "typed"
+      },
+      {
+        "id": "aws_access_key",
+        "title": "AWS Access Key",
+        "severity": "critical",
+        "pattern": "\\b(?:AKIA|ASIA)[0-9A-Z]{16}\\b",
+        "value_group": 0,
+        "kind": "typed"
+      },
+      {
+        "id": "github_token",
+        "title": "GitHub token",
+        "severity": "critical",
+        "pattern": "\\bgh[pousr]_[A-Za-z0-9]{30,}\\b",
+        "value_group": 0,
+        "kind": "typed"
+      },
+      {
+        "id": "openai_api_key",
+        "title": "OpenAI API key",
+        "severity": "high",
+        "pattern": "\\bsk-(?:proj-|ant-)?[A-Za-z0-9_-]{20,}\\b",
+        "value_group": 0,
+        "kind": "typed"
+      },
+      {
+        "id": "stripe_secret_key",
+        "title": "Stripe secret key",
+        "severity": "critical",
+        "pattern": "\\b(?:sk|rk)_(?:live|test)_[A-Za-z0-9]{16,}\\b",
+        "value_group": 0,
+        "kind": "typed"
+      },
+      {
+        "id": "slack_token",
+        "title": "Slack token",
+        "severity": "critical",
+        "pattern": "\\bxox[baprs]-[A-Za-z0-9-]{10,}\\b",
+        "value_group": 0,
+        "kind": "typed"
+      },
+      {
+        "id": "google_api_key",
+        "title": "Google API key",
+        "severity": "high",
+        "pattern": "\\bAIza[0-9A-Za-z_-]{35}\\b",
+        "value_group": 0,
+        "kind": "typed"
+      },
+      {
+        "id": "jwt_token",
+        "title": "JWT-токен",
+        "severity": "high",
+        "pattern": "\\beyJ[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}\\.[A-Za-z0-9_-]{8,}\\b",
+        "value_group": 0,
+        "kind": "typed"
+      },
+      {
+        "id": "database_url_password",
+        "title": "Пароль в строке подключения",
+        "severity": "high",
+        "pattern": "(?i)\\b(?:postgres(?:ql)?|mysql|mongodb(?:\\+srv)?|redis)://[^\\s:/@\"']+:([^\\s@\"']+)@",
+        "value_group": 1,
+        "kind": "database"
+      },
+      {
+        "id": "npm_token",
+        "title": "npm token",
+        "severity": "high",
+        "pattern": "\\bnpm_[A-Za-z0-9]{16,}\\b",
+        "value_group": 0,
+        "kind": "typed"
+      },
+      {
+        "id": "generic_password",
+        "title": "Пароль в присваивании",
+        "severity": "high",
+        "pattern": "(?i)(?<![\\w])(?:password|passwd|pwd|db_password|db_pass)[\"']?\\s*[:=]\\s*[\"']?([^\\s\"'`,;#]{8,})[\"']?",
+        "value_group": 1,
+        "kind": "assignment"
+      },
+      {
+        "id": "generic_api_key",
+        "title": "API-ключ в присваивании",
+        "severity": "high",
+        "pattern": "(?i)(?<![\\w])(?:api[_-]?key|apikey|api[_-]?secret|secret[_-]?key|client[_-]?secret)[\"']?\\s*[:=]\\s*[\"']?([^\\s\"'`,;#]{8,})[\"']?",
+        "value_group": 1,
+        "kind": "assignment"
+      },
+      {
+        "id": "generic_token",
+        "title": "Токен в присваивании",
+        "severity": "high",
+        "pattern": "(?i)(?<![\\w])(?:access[_-]?token|auth[_-]?token|refresh[_-]?token|token)[\"']?\\s*[:=]\\s*[\"']?([^\\s\"'`,;#]{8,})[\"']?",
+        "value_group": 1,
+        "kind": "assignment"
+      }
+    ]
+  },
+  "placeholders": [
+    "your_",
+    "your-",
+    "yourkey",
+    "example",
+    "sample",
+    "placeholder",
+    "changeme",
+    "change_me",
+    "change-me",
+    "dummy",
+    "fake",
+    "redacted",
+    "insert_",
+    "replace_",
+    "xxxx",
+    "****",
+    "...",
+    "<",
+    ">",
+    "${",
+    "{{",
+    "getenv",
+    "environ",
+    "os.getenv",
+    "todo",
+    "none",
+    "null",
+    "true",
+    "false"
+  ]
+}
